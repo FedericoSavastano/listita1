@@ -52,18 +52,21 @@ function FormComponent({ list, onAdd }) {
                                 />
                             </Form.Group>
 
-                            <Form.Select
-                                aria-label='Default select example'
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}>
-                                <option value=''>Categoria</option>
-                                {list.map((e) => (
-                                    <option key={e.id} value={e.category}>
-                                        {e.category}
-                                    </option>
-                                ))}
-                            </Form.Select>
-
+                            <Form.Group>
+                                <Form.Label>Categoria</Form.Label>
+                                <Form.Select
+                                    aria-label='Default select example'
+                                    value={category}
+                                    onChange={(e) =>
+                                        setCategory(e.target.value)
+                                    }>
+                                    {list.map((e) => (
+                                        <option key={e.id} value={e.category}>
+                                            {e.category}
+                                        </option>
+                                    ))}
+                                </Form.Select>
+                            </Form.Group>
                             <Button
                                 variant='secondary'
                                 onClick={handleAddItems}
