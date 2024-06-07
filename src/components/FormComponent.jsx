@@ -10,7 +10,7 @@ function FormComponent({ list, onAdd }) {
     const handleAddItems = (e) => {
         e.preventDefault();
 
-        if (!listElements) return;
+        if (!listElements || !category) return;
 
         const separatedArray = Array.from(listElements.split(','));
         let newListOfElements = [];
@@ -56,7 +56,7 @@ function FormComponent({ list, onAdd }) {
                                 aria-label='Default select example'
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value)}>
-                                <option>Categoria</option>
+                                <option value=''>Categoria</option>
                                 {list.map((e) => (
                                     <option key={e.id} value={e.category}>
                                         {e.category}
