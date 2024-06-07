@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* #root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+} */
+
+body {
+    font-family: 'Nunito', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    margin: 1rem;
+    background: #f6ebe6;
+}
+
+.wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.list {
+    padding-inline-start: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.category-title {
+    list-style: none;
+    padding: 1rem;
+    text-transform: uppercase;
+    background-color: #d61375;
+    color: white;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.list-items {
+    height: 100%;
+    max-height: 100%;
+}
+
+.hide {
+    overflow: hidden;
+    transition: 0.4s max-height;
+}
+
+.list-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 0.5em;
+}
+
+.button-list-element {
+    flex: 10;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background: #ffe5d9;
+    border: none;
+    margin: 5px;
+    border-radius: 20px 0px 0px 20px;
+    text-shadow: 2px 2px 2px white;
+}
+
+.button-list-element:hover {
+    background: #f8d0bd;
+}
+
+.button-delete {
+    flex: 2;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.button-delete:hover {
+    background: #f8d0bd;
+}
+
+.accordion-body {
+    background: #fdf4f0;
+}
