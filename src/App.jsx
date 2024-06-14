@@ -46,7 +46,19 @@ function App() {
         },
     ];
 
-    const [data, setData] = useState(dataG);
+    /**
+     * TO DO
+     * GUARDAR LOS DATOS EN LOCALSTORAGE
+     * GENERAR EL AGREGADOR DE CATEGORIA
+     */
+
+    const [data, setData] = useState(
+        JSON.parse(localStorage.getItem('listElements')) || dataG
+    );
+
+    useEffect(() => {
+        localStorage.setItem('listElements', JSON.stringify(data));
+    }, [data]);
 
     function refreshData(newData) {
         setData(newData);

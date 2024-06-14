@@ -92,3 +92,17 @@ body {
 .accordion-body {
     background: #fdf4f0;
 }
+
+.category-wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.category-selector {
+    flex: 10;
+}
+
+.category-new-btn {
+    flex: 1;
+    background-color: #d61375;
+}

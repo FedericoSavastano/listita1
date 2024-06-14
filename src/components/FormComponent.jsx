@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function FormComponent({ list, onAdd }) {
     const [listElements, setListElements] = useState('');
     const [category, setCategory] = useState(list[0].category);
+    const [show, setShow] = useState(false);
+    const [newCategory, setNewCategory] = useState('');
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const handleAddItems = (e) => {
         e.preventDefault();
@@ -29,6 +35,21 @@ function FormComponent({ list, onAdd }) {
         onAdd(listnew);
         setListElements('');
     };
+
+    const handleAddNewCategory = (e) => {
+        e.preventDefault();
+
+        if (!newCategory) return;
+
+        let listnew = list;
+
+        listnew.push({ id: Math.random(), category: newCategory, data: [] });
+
+        onAdd(listnew);
+        setListElements('');
+        handleClose();
+    };
+
     return (
         <>
             <Accordion>
@@ -54,18 +75,31 @@ function FormComponent({ list, onAdd }) {
 
                             <Form.Group>
                                 <Form.Label>Categoria</Form.Label>
-                                <Form.Select
-                                    aria-label='Default select example'
-                                    value={category}
-                                    onChange={(e) =>
-                                        setCategory(e.target.value)
-                                    }>
-                                    {list.map((e) => (
-                                        <option key={e.id} value={e.category}>
-                                            {e.category}
-                                        </option>
-                                    ))}
-                                </Form.Select>
+
+                                <div className='category-wrapper'>
+                                    <Form.Select
+                                        aria-label='Default select example'
+                                        className='category-selector'
+                                        value={category}
+                                        onChange={(e) =>
+                                            setCategory(e.target.value)
+                                        }>
+                                        {list.map((e) => (
+                                            <option
+                                                key={e.id}
+                                                value={e.category}>
+                                                {e.category}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
+
+                                    <Button
+                                        className='category-new-btn'
+                                        variant='warning'
+                                        onClick={handleShow}>
+                                        ➕
+                                    </Button>
+                                </div>
                             </Form.Group>
                             <Button
                                 variant='secondary'
@@ -74,6 +108,43 @@ function FormComponent({ list, onAdd }) {
                                 Agregar
                             </Button>
                         </Form>
+
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Modal heading</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleAddNewCategory}>
+                                    <Form.Group
+                                        className='mb-3'
+                                        controlId='exampleForm.ControlTextarea1'>
+                                        <Form.Label>
+                                            Agregue una nueva categoria
+                                        </Form.Label>
+
+                                        <Form.Control
+                                            type='text'
+                                            value={newCategory}
+                                            onChange={(e) =>
+                                                setNewCategory(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button
+                                    variant='secondary'
+                                    onClick={handleClose}>
+                                    Close
+                                </Button>
+                                <Button
+                                    variant='primary'
+                                    onClick={handleAddNewCategory}>
+                                    Save Changes
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
