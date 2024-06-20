@@ -13,47 +13,50 @@ const ShareComponent = () => {
         const shareableUrl = `${baseUrl}?data=${encodedData}`;
 
         try {
-            const response = await fetch(
-                // 'https://api-ssl.bitly.com/v4/shorten',
-                'https://api.encurtador.dev/encurtamentos',
-                {
-                    method: 'POST',
-                    headers: {
-                        // 'Authorization':
-                        //     'Bearer {2d021adf0113b47ca73d886f06c79d5256c8fd30}',
-
-                        'Content-Type': 'application/json',
-                    },
-                    // body: JSON.stringify({
-                    //     'long_url': shareableUrl,
-                    //     'domain': baseUrl,
-                    //     // 'group_guid': 'Ba1bc23dE4F',
-                    // }),
-                    body: {
-                        'url': shareableUrl,
-                    },
-                }
-            );
-
-            const result = await response.json();
-            console.log('Success:', result);
-
-            // const response = await axios.post(
-            //     'https://api-ssl.bitly.com/v4/shorten',
+            // const response = await fetch(
+            //     // 'https://api-ssl.bitly.com/v4/shorten',
+            //     // 'https://api.encurtador.dev/encurtamentos',
+            //     //'csclub.uwaterloo.ca/~phthakka/1pt-express',
+            //     'https://smolurl.com/api/links',
             //     {
-            //         long_url: longUrl,
-            //     },
-            //     {
+            //         // mode: 'no-cors',
+            //         method: 'POST',
             //         headers: {
-            //             Authorization:
-            //                 'Bearer {2d021adf0113b47ca73d886f06c79d5256c8fd30}',
+            //             // 'Authorization':
+            //             //     'Bearer {2d021adf0113b47ca73d886f06c79d5256c8fd30}',
+
             //             'Content-Type': 'application/json',
+            //         },
+            //         // body: JSON.stringify({
+            //         //     'long_url': shareableUrl,
+            //         //     'domain': baseUrl,
+            //         //     // 'group_guid': 'Ba1bc23dE4F',
+            //         // }),
+            //         body: {
+            //             'url': shareableUrl,
             //         },
             //     }
             // );
-            // setShortUrl(response.data.link);
 
-            // console.log('Success:', response.data.link);
+            // const result = await response.json();
+            // console.log('Success:', result);
+
+            const response = await axios.post(
+                'https://api-ssl.bitly.com/v4/shorten',
+                {
+                    long_url: shareableUrl,
+                },
+                {
+                    headers: {
+                        Authorization:
+                            'Bearer {2d021adf0113b47ca73d886f06c79d5256c8fd30}',
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+            setShortUrl(response.data.link);
+
+            console.log('Success:', response.data.link);
         } catch (error) {
             console.error('Error:', error);
         }
