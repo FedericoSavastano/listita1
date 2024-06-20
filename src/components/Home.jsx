@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import List from './List';
 import FormComponent from './FormComponent';
-import ShareComponent from './ShareComponent';
+import Footer from './Footer';
 
 function Home() {
     const dataG = [
@@ -46,18 +46,14 @@ function Home() {
         },
     ];
 
-    /**
-     * TO DO
-     * GUARDAR LOS DATOS EN LOCALSTORAGE
-     * GENERAR EL AGREGADOR DE CATEGORIA
-     */
-
+    // state for data. From localStorage, or template
     const [data, setData] = useState(
         JSON.parse(localStorage.getItem('listElements')) || dataG
     );
 
     const location = useLocation();
 
+    // checks if there's data in url. if true, sets data.
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const encodedData = params.get('data');
@@ -65,7 +61,6 @@ function Home() {
         if (encodedData) {
             try {
                 const decodedData = JSON.parse(JSON.parse(encodedData));
-                console.log('encoded data', encodedData);
                 setData(decodedData);
             } catch (error) {
                 console.error('Error decoding data', error);
@@ -73,6 +68,7 @@ function Home() {
         }
     }, [location.search]);
 
+    // adds changes to data to localStorage
     useEffect(() => {
         localStorage.setItem('listElements', JSON.stringify(data));
     }, [data]);
@@ -81,6 +77,11 @@ function Home() {
         setData(newData);
     }
 
+    function resetData() {
+        setData(dataG);
+    }
+
+    // changes status of single element in list
     const handleChangeStatus = (event) => {
         let listLocal = data;
 
@@ -95,6 +96,10 @@ function Home() {
         );
 
         refreshData([...listLocal]);
+    };
+
+    const handleAddElement = (newList) => {
+        refreshData([...newList]);
     };
 
     const handleDeleteElement = (event) => {
@@ -113,10 +118,6 @@ function Home() {
         refreshData([...listLocal]);
     };
 
-    const handleAddElement = (newList) => {
-        refreshData([...newList]);
-    };
-
     return (
         <div className='wrapper'>
             <FormComponent list={data} onAdd={handleAddElement}></FormComponent>
@@ -124,7 +125,7 @@ function Home() {
                 list={data}
                 onChange={handleChangeStatus}
                 onDelete={handleDeleteElement}></List>
-            <ShareComponent></ShareComponent>
+            <Footer resetData={resetData}></Footer>
         </div>
     );
 }

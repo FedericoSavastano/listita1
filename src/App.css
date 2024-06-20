@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+PL:wght@100..400&display=swap');
 
-/* #root {
-    max-width: 1280px;
+#root {
+    /* max-width: 1280px;
     margin: 0 auto;
     padding: 2rem;
-    text-align: center;
-} */
+    text-align: center; */
+    background-color: ghostwhite;
+}
 
 body {
     font-family: 'Nunito', sans-serif;
@@ -15,7 +17,12 @@ body {
     margin: 1rem;
     background: #f6ebe6;
 }
-
+.title {
+    font-family: 'Playwrite PL', cursive;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+}
 .wrapper {
     max-width: 800px;
     margin: 0 auto;
@@ -105,4 +112,60 @@ body {
 .category-new-btn {
     flex: 1;
     background-color: #d61375;
+}
+
+.footer {
+    background: #f8ddd1;
+    padding: 2rem 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.footer-buttons > .btn {
+    --bs-btn-bg: red !important;
+    border-radius: 50px;
+    color: black;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background: #f19d77;
+    border: none;
+    margin: 5px;
+    border-radius: 20px 20px;
+    /* text-shadow: 2px 2px 2px white; */
+    --bs-btn-hover-border-color: rgb(121, 121, 202);
+    --bs-btn-hover-bg: rgb(121, 121, 202);
+}
+
+.add-btn {
+    border-radius: 50px;
+    color: black;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background: #f19d77;
+    border: none;
+    margin: 5px;
+    border-radius: 20px 20px;
+    /* text-shadow: 2px 2px 2px white; */
+    --bs-btn-hover-border-color: rgb(121, 121, 202);
+    --bs-btn-hover-bg: rgb(121, 121, 202);
+}
+
+.footer-signature {
+    text-align: center;
+}
+
+.add-item.accordion {
+    --bs-accordion-active-bg: #eeee5c !important;
+    --bs-accordion-bg: #79aefe !important;
+    --bs-accordion-btn-color: white !important;
+    --bs-accordion-active-color: white !important;
 }

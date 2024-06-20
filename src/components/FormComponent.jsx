@@ -52,7 +52,7 @@ function FormComponent({ list, onAdd }) {
 
     return (
         <>
-            <Accordion>
+            <Accordion className='add-item'>
                 <Accordion.Item eventKey='0'>
                     <Accordion.Header>Agregar item</Accordion.Header>
                     <Accordion.Body>
@@ -102,16 +102,16 @@ function FormComponent({ list, onAdd }) {
                                 </div>
                             </Form.Group>
                             <Button
-                                variant='secondary'
                                 onClick={handleAddItems}
-                                style={{ margin: '1rem 0rem' }}>
+                                style={{ margin: '1rem 0rem' }}
+                                className='add-btn'>
                                 Agregar
                             </Button>
                         </Form>
 
                         <Modal show={show} onHide={handleClose}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Modal heading</Modal.Title>
+                                <Modal.Title>Nueva categoría</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <Form onSubmit={handleAddNewCategory}>
@@ -119,7 +119,7 @@ function FormComponent({ list, onAdd }) {
                                         className='mb-3'
                                         controlId='exampleForm.ControlTextarea1'>
                                         <Form.Label>
-                                            Agregue una nueva categoria
+                                            Nombre de la nueva categoria
                                         </Form.Label>
 
                                         <Form.Control
@@ -136,12 +136,12 @@ function FormComponent({ list, onAdd }) {
                                 <Button
                                     variant='secondary'
                                     onClick={handleClose}>
-                                    Close
+                                    Cerrar
                                 </Button>
                                 <Button
                                     variant='primary'
                                     onClick={handleAddNewCategory}>
-                                    Save Changes
+                                    Guardar
                                 </Button>
                             </Modal.Footer>
                         </Modal>
