@@ -25,7 +25,7 @@ const ShareComponent = () => {
                 'Content-Type': 'application/json',
             },
             body: {
-                url: shareableUrl,
+                url: '"' + shareableUrl + '"',
                 validity_duration: 5,
             },
         };
