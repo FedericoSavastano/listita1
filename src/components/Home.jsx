@@ -5,7 +5,7 @@ import FormComponent from './FormComponent';
 import Footer from './Footer';
 
 function Home() {
-    const dataG = [
+    const template = [
         {
             id: 1,
             category: 'limpieza',
@@ -48,7 +48,7 @@ function Home() {
 
     // state for data. From localStorage, or template
     const [data, setData] = useState(
-        JSON.parse(localStorage.getItem('listElements')) || dataG
+        JSON.parse(localStorage.getItem('listElements')) || template
     );
 
     const location = useLocation();
@@ -60,7 +60,7 @@ function Home() {
 
         if (encodedData) {
             try {
-                const decodedData = JSON.parse(JSON.parse(encodedData));
+                const decodedData = JSON.parse(decodeURIComponent(encodedData));
                 setData(decodedData);
             } catch (error) {
                 console.error('Error decoding data', error);
@@ -78,7 +78,7 @@ function Home() {
     }
 
     function resetData() {
-        setData(dataG);
+        setData(template);
     }
 
     // changes status of single element in list

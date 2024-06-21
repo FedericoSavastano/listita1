@@ -10,10 +10,12 @@ function Footer({ resetData }) {
                 <ShareComponent></ShareComponent>
             </div>
             <div className='footer-signature'>
-                `Made with ✔ by `
-                <a href='https://federicosavastano.netlify.app'>
-                    Federico Savastano
-                </a>
+                <span>
+                    Made with ✔ by{' '}
+                    <a href='https://federicosavastano.netlify.app'>
+                        Federico Savastano
+                    </a>
+                </span>
             </div>
         </div>
     );

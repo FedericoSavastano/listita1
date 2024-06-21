@@ -8,33 +8,12 @@ const ShareComponent = () => {
 
     const handleShare = async () => {
         const data = localStorage.getItem('listElements');
-        const encodedData = encodeURIComponent(JSON.stringify(data));
+        const encodedData1 = JSON.stringify(data);
+        const encodedData = encodeURIComponent(data);
         const baseUrl = window.location.href;
         const shareableUrl = `${baseUrl}?data=${encodedData}`;
 
         console.log(shareableUrl);
-
-        // try {
-        //     const response = await axios.post(
-        //         'https://api.tinyurl.com/create',
-        //         {
-        //             url: encodeURIComponent(shareableUrl),
-        //             domain: 'tiny.one',
-        //             description: 'string',
-        //         },
-        //         {
-        //             headers: {
-        //                 Authorization:
-        //                     'Bearer {ZkMUOL2StHNJ76YHq3qhkWSz1gJi0BKbTF3m5tu5UmW5R6NOZFwexygKQCS7}', // Replace with your TinyURL API key
-        //                 'Content-Type': 'application/json',
-        //             },
-        //         }
-        //     );
-        //     console.log(response.data.data.tiny_url);
-        //     setShortUrl(response.data.data.tiny_url);
-        // } catch (error) {
-        //     console.error('Error creating short URL', error);
-        // }
 
         const url = 'https://url-shortener42.p.rapidapi.com/shorten/';
         const options = {
@@ -66,19 +45,19 @@ const ShareComponent = () => {
             navigator
                 .share({
                     title: 'Share Data',
-                    url: shortUrl,
+                    url: shareableUrl,
                 })
                 .catch((error) => console.error('Error sharing', error));
         } else {
             // Fallback for browsers that don't support the Web Share API
             navigator.clipboard
-                .writeText(shortUrl)
+                .writeText(shareableUrl)
                 .then(() => alert('Link copied to clipboard'))
                 .catch((error) => console.error('Error copying link', error));
         }
     };
 
-    return <Button onClick={handleShare}>Compartir Lista ↪︎ </Button>;
+    return <Button onClick={handleShare}>Compartir Lista ╰┈➤</Button>;
 };
 
 export default ShareComponent;
