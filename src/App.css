@@ -132,7 +132,6 @@ body {
 }
 
 .footer-buttons > .btn {
-    --bs-btn-bg: red !important;
     white-space: nowrap;
     border-radius: 50px;
     color: black;
@@ -150,8 +149,11 @@ body {
 }
 
 .add-btn {
-    --bs-btn-bg: red !important;
-    border-radius: 50px;
+    --bs-btn-bg: #f19d77 !important;
+    --bs-btn-color: black !important;
+    --bs-btn-border-color: none !important;
+    --bs-btn-hover-border-color: rgb(121, 121, 202) !important;
+    --bs-btn-hover-bg: rgb(121, 121, 202) !important;
     color: black;
     text-transform: uppercase;
     padding: 0.5rem 1rem;

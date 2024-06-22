@@ -75,7 +75,7 @@ function FormComponent({ list, onAdd }) {
         <>
             <Accordion className='add-item'>
                 <Accordion.Item eventKey='0'>
-                    <Accordion.Header>Agregar item</Accordion.Header>
+                    <Accordion.Header>➕ AGREGAR ITEM</Accordion.Header>
                     <Accordion.Body>
                         <Form onSubmit={handleAddItems}>
                             <Form.Group
