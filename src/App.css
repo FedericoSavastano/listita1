@@ -83,6 +83,11 @@ body {
     background: #f8d0bd;
 }
 
+.button-list-element:before,
+.button-list-element:after {
+    content: '\00a0\00a0\00a0\00a0';
+}
+
 .button-delete {
     flex: 2;
     padding: 0.5rem 1rem;
@@ -128,6 +133,7 @@ body {
 
 .footer-buttons > .btn {
     --bs-btn-bg: red !important;
+    white-space: nowrap;
     border-radius: 50px;
     color: black;
     text-transform: uppercase;
@@ -144,6 +150,7 @@ body {
 }
 
 .add-btn {
+    --bs-btn-bg: red !important;
     border-radius: 50px;
     color: black;
     text-transform: uppercase;

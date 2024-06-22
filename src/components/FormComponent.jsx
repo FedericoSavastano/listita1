@@ -7,11 +7,20 @@ import Modal from 'react-bootstrap/Modal';
 function FormComponent({ list, onAdd }) {
     const [listElements, setListElements] = useState('');
     const [category, setCategory] = useState(list[0].category);
-    const [show, setShow] = useState(false);
+    const [categoryToDelete, setCategoryToDelete] = useState(list[0].category);
+
+    const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
+    const [showDeleteCategoryModal, setShowDeleteCategoryModal] =
+        useState(false);
     const [newCategory, setNewCategory] = useState('');
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleCloseAddCategoryModal = () => setShowAddCategoryModal(false);
+    const handleShowAddCategoryModal = () => setShowAddCategoryModal(true);
+
+    const handleCloseDeleteCategoryModal = () =>
+        setShowDeleteCategoryModal(false);
+    const handleShowDeleteCategoryModal = () =>
+        setShowDeleteCategoryModal(true);
 
     const handleAddItems = (e) => {
         e.preventDefault();
@@ -47,7 +56,19 @@ function FormComponent({ list, onAdd }) {
 
         onAdd(listnew);
         setListElements('');
-        handleClose();
+        handleCloseAddCategoryModal();
+    };
+
+    const handleDeleteCategory = (e) => {
+        e.preventDefault();
+
+        if (!categoryToDelete) return;
+
+        let listnew = list.filter((e) => e.category != categoryToDelete);
+
+        onAdd(listnew);
+        setListElements('');
+        handleCloseDeleteCategoryModal();
     };
 
     return (
@@ -96,8 +117,14 @@ function FormComponent({ list, onAdd }) {
                                     <Button
                                         className='category-new-btn'
                                         variant='warning'
-                                        onClick={handleShow}>
+                                        onClick={handleShowAddCategoryModal}>
                                         ➕
+                                    </Button>
+                                    <Button
+                                        className='category-new-btn'
+                                        variant='warning'
+                                        onClick={handleShowDeleteCategoryModal}>
+                                        ➖
                                     </Button>
                                 </div>
                             </Form.Group>
@@ -109,7 +136,9 @@ function FormComponent({ list, onAdd }) {
                             </Button>
                         </Form>
 
-                        <Modal show={show} onHide={handleClose}>
+                        <Modal
+                            show={showAddCategoryModal}
+                            onHide={handleCloseAddCategoryModal}>
                             <Modal.Header closeButton>
                                 <Modal.Title>Nueva categoría</Modal.Title>
                             </Modal.Header>
@@ -135,13 +164,62 @@ function FormComponent({ list, onAdd }) {
                             <Modal.Footer>
                                 <Button
                                     variant='secondary'
-                                    onClick={handleClose}>
+                                    onClick={handleCloseAddCategoryModal}>
                                     Cerrar
                                 </Button>
                                 <Button
                                     variant='primary'
                                     onClick={handleAddNewCategory}>
                                     Guardar
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+
+                        <Modal
+                            show={showDeleteCategoryModal}
+                            onHide={handleCloseAddCategoryModal}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Borrar categoría</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form onSubmit={handleDeleteCategory}>
+                                    <Form.Group
+                                        className='mb-3'
+                                        controlId='exampleForm.ControlTextarea1'>
+                                        <Form.Label>
+                                            Seleccione la categoria a borrar
+                                        </Form.Label>
+
+                                        <Form.Select
+                                            aria-label='Default select example'
+                                            className='category-selector'
+                                            value={categoryToDelete}
+                                            onChange={(e) =>
+                                                setCategoryToDelete(
+                                                    e.target.value
+                                                )
+                                            }>
+                                            {list.map((e) => (
+                                                <option
+                                                    key={e.id}
+                                                    value={e.category}>
+                                                    {e.category}
+                                                </option>
+                                            ))}
+                                        </Form.Select>
+                                    </Form.Group>
+                                </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button
+                                    variant='secondary'
+                                    onClick={handleCloseDeleteCategoryModal}>
+                                    Cerrar
+                                </Button>
+                                <Button
+                                    variant='primary'
+                                    onClick={handleDeleteCategory}>
+                                    Borrar
                                 </Button>
                             </Modal.Footer>
                         </Modal>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import List from './List';
 import FormComponent from './FormComponent';
 import Footer from './Footer';
@@ -53,6 +53,8 @@ function Home() {
 
     const location = useLocation();
 
+    const navigate = useNavigate();
+
     // checks if there's data in url. if true, sets data.
     useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -62,6 +64,8 @@ function Home() {
             try {
                 const decodedData = JSON.parse(decodeURIComponent(encodedData));
                 setData(decodedData);
+                // this navigate is used for preventing from refreshing an old url and loosing data
+                navigate('/');
             } catch (error) {
                 console.error('Error decoding data', error);
             }
