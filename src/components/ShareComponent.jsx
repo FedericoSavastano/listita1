@@ -3,14 +3,13 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 const ShareComponent = () => {
-    const [shortUrl, setShortUrl] = useState('');
-
     const handleShare = async () => {
         const data = localStorage.getItem('listElements');
 
         const encodedData = encodeURIComponent(data);
         const baseUrl = window.location.href;
         const shareableUrl = `${baseUrl}?data=${encodedData}`;
+        let shortUrl;
 
         try {
             const response = await axios.post(
@@ -28,7 +27,7 @@ const ShareComponent = () => {
                 }
             );
 
-            setShortUrl(response.data.shrtlnk);
+            shortUrl = response.data.shrtlnk;
             console.log(response.data.shrtlnk);
         } catch (error) {
             console.error('Error creating short URL', error);
