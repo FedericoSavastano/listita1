@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import List from './List';
 import FormComponent from './FormComponent';
 import Footer from './Footer';
@@ -118,11 +118,18 @@ function Home() {
 
     return (
         <div className='wrapper'>
-            <FormComponent list={data} onAdd={handleAddElement}></FormComponent>
-            <List
-                list={data}
-                onChange={handleChangeStatus}
-                onDelete={handleDeleteElement}></List>
+            <div>
+                <Link to='/' className='title'>
+                    <div>Listitas Linditas</div>
+                </Link>
+                <FormComponent
+                    list={data}
+                    onAdd={handleAddElement}></FormComponent>
+                <List
+                    list={data}
+                    onChange={handleChangeStatus}
+                    onDelete={handleDeleteElement}></List>
+            </div>
             <Footer resetData={resetData}></Footer>
         </div>
     );
