@@ -10,28 +10,25 @@ function Home() {
             id: 1,
             category: 'limpieza',
             data: [
-                { nombre: 'shampoo', comprado: false },
-                { nombre: 'lavandina', comprado: false },
+                // { name: 'shampoo', bought: false },
+                // { name: 'lavandina', bought: false },
             ],
         },
         {
             id: 2,
             category: 'comida',
             data: [
-                { nombre: 'pollo', comprado: false },
-
-                { nombre: 'carne', comprado: false },
-
-                { nombre: 'verdura', comprado: false },
+                // { name: 'pollo', bought: false },
+                // { name: 'carne', bought: false },
+                // { name: 'verdura', bought: false },
             ],
         },
         {
             id: 3,
             category: 'farmacia',
             data: [
-                { nombre: 'ibupirac', comprado: false },
-
-                { nombre: 'sertal', comprado: false },
+                // { name: 'ibupirac', bought: false },
+                // { name: 'sertal', bought: false },
             ],
         },
 
@@ -39,9 +36,8 @@ function Home() {
             id: 4,
             category: 'kiosko',
             data: [
-                { nombre: 'chocolate', comprado: false },
-
-                { nombre: 'galletitas', comprado: false },
+                // { name: 'chocolate', bought: false },
+                // { name: 'galletitas', bought: false },
             ],
         },
     ];
@@ -92,7 +88,7 @@ function Home() {
         let obj = listLocal.filter((e) => e.id === Number(event.target.id))[0];
 
         obj.data.forEach((e) =>
-            e.nombre === event.target.name ? (e.comprado = !e.comprado) : e
+            e.name === event.target.name ? (e.bought = !e.bought) : e
         );
 
         listLocal.forEach((e) =>
@@ -111,9 +107,7 @@ function Home() {
 
         let obj = listLocal.filter((e) => e.id === Number(event.target.id))[0];
 
-        let listFiltered = obj.data.filter(
-            (e) => e.nombre !== event.target.name
-        );
+        let listFiltered = obj.data.filter((e) => e.name !== event.target.name);
 
         listLocal.forEach((e) =>
             e.id === Number(event.target.id) ? (e.data = listFiltered) : e

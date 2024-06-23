@@ -2,10 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+PL:wght@100..400&display=swap');
 
 #root {
-    /* max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center; */
     background-color: ghostwhite;
 }
 
@@ -17,12 +13,14 @@ body {
     margin: 1rem;
     background: #f6ebe6;
 }
+
 .title {
     font-family: 'Playwrite PL', cursive;
     color: black;
     text-decoration: none;
     text-align: center;
 }
+
 .wrapper {
     max-width: 800px;
     margin: 0 auto;
@@ -85,7 +83,7 @@ body {
 
 .button-list-element:before,
 .button-list-element:after {
-    content: '\00a0\00a0\00a0\00a0';
+    content: '\00a0\00a0';
 }
 
 .button-delete {
@@ -143,7 +141,6 @@ body {
     border: none;
     margin: 5px;
     border-radius: 20px 20px;
-    /* text-shadow: 2px 2px 2px white; */
     --bs-btn-hover-border-color: rgb(121, 121, 202);
     --bs-btn-hover-bg: rgb(121, 121, 202);
 }

@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 
-function ListElement({ element, onChange, onDelete, index }) {
-    let itemsLeft = element.data.filter((e) => e.comprado === false).length;
+function ListElement({ element, onChange, onDelete }) {
+    let itemsLeft = element.data.filter((e) => e.bought === false).length;
     return (
         <>
             <Accordion.Item eventKey={element.id} key={element.id}>
@@ -12,23 +11,23 @@ function ListElement({ element, onChange, onDelete, index }) {
                 <Accordion.Body className='accordion-body'>
                     <ul className='list-items'>
                         {element.data.map((listElement) => (
-                            <li key={listElement.nombre} className='list-item'>
+                            <li key={listElement.name} className='list-item'>
                                 <button
                                     onClick={onChange}
                                     id={element.id}
-                                    name={listElement.nombre}
+                                    name={listElement.name}
                                     style={{
-                                        textDecoration: listElement.comprado
+                                        textDecoration: listElement.bought
                                             ? 'line-through'
                                             : 'none',
                                     }}
                                     className='button-list-element'>
-                                    {listElement.nombre}{' '}
+                                    {listElement.name}{' '}
                                 </button>
                                 <button
                                     onClick={onDelete}
                                     id={element.id}
-                                    name={listElement.nombre}
+                                    name={listElement.name}
                                     className='button-delete'>
                                     🗑
                                 </button>

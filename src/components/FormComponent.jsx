@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -6,17 +6,17 @@ import Modal from 'react-bootstrap/Modal';
 
 function FormComponent({ list, onAdd }) {
     const [listElements, setListElements] = useState('');
+
     const [category, setCategory] = useState(list[0].category);
+    const [newCategory, setNewCategory] = useState('');
     const [categoryToDelete, setCategoryToDelete] = useState(list[0].category);
 
     const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
     const [showDeleteCategoryModal, setShowDeleteCategoryModal] =
         useState(false);
-    const [newCategory, setNewCategory] = useState('');
 
     const handleCloseAddCategoryModal = () => setShowAddCategoryModal(false);
     const handleShowAddCategoryModal = () => setShowAddCategoryModal(true);
-
     const handleCloseDeleteCategoryModal = () =>
         setShowDeleteCategoryModal(false);
     const handleShowDeleteCategoryModal = () =>
@@ -29,19 +29,19 @@ function FormComponent({ list, onAdd }) {
 
         const separatedArray = Array.from(listElements.split(','));
         let newListOfElements = [];
-        let listnew = list;
+        let listUpdated = list;
 
         separatedArray.forEach((value) =>
-            newListOfElements.push({ nombre: value.trim(), comprado: false })
+            newListOfElements.push({ name: value.trim(), bought: false })
         );
 
-        listnew.forEach((e) => {
+        listUpdated.forEach((e) => {
             if (e.category === category) {
                 e.data.push(...newListOfElements);
             }
         });
 
-        onAdd(listnew);
+        onAdd(listUpdated);
         setListElements('');
     };
 
@@ -50,11 +50,15 @@ function FormComponent({ list, onAdd }) {
 
         if (!newCategory) return;
 
-        let listnew = list;
+        let listUpdated = list;
 
-        listnew.push({ id: Math.random(), category: newCategory, data: [] });
+        listUpdated.push({
+            id: Math.random(),
+            category: newCategory,
+            data: [],
+        });
 
-        onAdd(listnew);
+        onAdd(listUpdated);
         setListElements('');
         handleCloseAddCategoryModal();
     };
@@ -64,9 +68,9 @@ function FormComponent({ list, onAdd }) {
 
         if (!categoryToDelete) return;
 
-        let listnew = list.filter((e) => e.category != categoryToDelete);
+        let listUpdated = list.filter((e) => e.category != categoryToDelete);
 
-        onAdd(listnew);
+        onAdd(listUpdated);
         setListElements('');
         handleCloseDeleteCategoryModal();
     };

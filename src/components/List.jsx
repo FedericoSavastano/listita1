@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import ListElement from './ListElement';
 

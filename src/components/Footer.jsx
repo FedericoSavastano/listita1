@@ -1,4 +1,3 @@
-import React from 'react';
 import ShareComponent from './ShareComponent';
 import ResetComponent from './ResetComponent';
 

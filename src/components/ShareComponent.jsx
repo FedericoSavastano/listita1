@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
@@ -19,8 +18,8 @@ const ShareComponent = () => {
                 },
                 {
                     headers: {
-                        'api-key':
-                            'aE4YqwzJsAQlAmz708ay5vOpiE2MtPk90E3QlKvZUGmrz',
+                        'api-key': import.meta.env
+                            .VITE_REACT_APP_SHORTLINK_API_KEY,
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                     },
@@ -28,7 +27,6 @@ const ShareComponent = () => {
             );
 
             shortUrl = response.data.shrtlnk;
-            console.log(response.data.shrtlnk);
         } catch (error) {
             console.error('Error creating short URL', error);
         }
